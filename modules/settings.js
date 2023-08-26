@@ -25,6 +25,9 @@ class Sprite{
 
     getRect(){
         let rect = this.ELEMENT.getBoundingClientRect();
+        if (this.HEIGHT == 90){
+            console.log("Character's rect", rect)
+        }
         return {
             left: rect.left,
             top: rect.top,

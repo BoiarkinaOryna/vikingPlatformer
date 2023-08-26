@@ -20,7 +20,7 @@ function createMap(listMap){
                     hero = new Character(x, y, 60, 90, "../images/character1.png", "img", 30, 5, "Георгій")
                     break;
                 case "n":
-                    let npc = new Npc(x, y, 60, 90, "./images/character2.png", "img", "Ben")
+                    let npc = new Npc(x, y, 60, 100, "./images/character2.png", "img", "Ben")
                     break;
             };
             x += 100;

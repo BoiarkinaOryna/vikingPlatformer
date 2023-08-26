@@ -29,7 +29,7 @@ class Character extends Sprite{
                 let collRight = this.collisionRight(listElem);
                 console.log(collRight);
                 if (collRight == false){
-                    this.X += 3;
+                    this.X += 5;
                     this.ELEMENT.style.left = `${this.X}px`;
                 }
                 break;
@@ -40,7 +40,7 @@ class Character extends Sprite{
                 this.animation();
                 let collLeft = this.collisionLeft(listElem);
                 if(collLeft == false){
-                    this.X -= 3;
+                    this.X -= 5;
                     this.ELEMENT.style.left = `${this.X}px`;
                 }
                 break;
@@ -50,19 +50,16 @@ class Character extends Sprite{
         let collide = false;
         for (let block of listElem){
             let blockRect = block.RECT;
-            console.log(this.RECT);
-            if (this.RECT.bottom > block.RECT.top && this.RECT.top < block.RECT.bottom){
-                if (this.RECT.left <= block.RECT.left && this.RECT.right >= block.RECT.left){
+            // console.log(this.RECT);
+            let chRect = this.getRect()
+            // console.log("block.RECT", block.RECT);
+            if (chRect.bottom > block.RECT.top && chRect.top < block.RECT.bottom){
+                // console.log(1);
+                if (chRect.left <= block.RECT.left && chRect.right >= block.RECT.left){
+                    // console.log(2);
                     collide = true;
                     break;
-                } else{
-                    collide = false;
-                }
-            } else{
-                collide = false;
-            }
-            console.log(collide)
-        };
+                }}};
         return collide;
     };
     
@@ -70,15 +67,12 @@ class Character extends Sprite{
         let collide = false;
         for (let block of listElem){
             let blockRect = block.RECT;
-
-            if (this.RECT.bottom > blockRect.top && this.RECT.top < blockRect.bottom){
-                if (this.RECT.right >= blockRect.right && this.RECT.left <= blockRect.right){
+            let chRect = this.getRect()
+            if (chRect.bottom > blockRect.top && chRect.top < blockRect.bottom){
+                if (chRect.right >= blockRect.right && chRect.left <= blockRect.right){
                     collide = true;
                     break;
-                };
-            };
-            // console.log(collide)
-        };
+                }}};
         return collide;
     };
 };
