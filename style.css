@@ -1,0 +1,9 @@
+.bg{
+    background-image: url(images/backgroundLocation1Level1.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.left{
+    transform: scale(-1, 1);
+}

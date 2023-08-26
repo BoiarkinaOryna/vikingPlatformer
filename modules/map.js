@@ -1,5 +1,6 @@
 import Character from "/modules/character.js";
 import Sprite from "/modules/settings.js";
+import Npc from "/modules/npc.js";
 
 function createMap(listMap){
     let listElem = [];
@@ -18,7 +19,9 @@ function createMap(listMap){
                 case "h":
                     hero = new Character(x, y, 60, 90, "../images/character1.png", "img", 30, 5, "Георгій")
                     break;
-
+                case "n":
+                    let npc = new Npc(x, y, 60, 90, "./images/character2.png", "img", "Ben")
+                    break;
             };
             x += 100;
         };

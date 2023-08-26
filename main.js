@@ -2,11 +2,15 @@ import Character from "./modules/character.js";
 import createMap from "./modules/map.js";
 
 let map = [
-    "00000000000000000000".split(""),
-    "00h00000000000000000".split(""),
-    "11111111111111111111".split(""),
-    "00000000000000000000".split(""),
-    "00000000000000000000".split(""),
+    "00000000000000000".split(""),
+    "00000000000000000".split(""),
+    "00000000000000000".split(""),
+    "00000000000000000".split(""),
+    "000h000000n000000".split(""),
+    "11111111111111111".split(""),
+    "00000000000000000".split(""),
+    "00000000000000000".split(""),
+    "00000000000000000".split(""),
 ]
 // 0 - нічого
 // 1 - блок
@@ -22,5 +26,10 @@ function gameLoop(){
 gameLoop();
 
 document.addEventListener("keydown", (event) => {
-    hero.move(event.code);
+    hero.move(event.code, listElem);
+});
+
+document.addEventListener("keyup", (event) => {
+    hero.IMG_PATH = "/images/character1.png";
+    hero.ELEMENT.src = hero.IMG_PATH;
 });

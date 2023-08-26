@@ -6,7 +6,7 @@ class Sprite{
         this.HEIGHT = height;
         this.IMG_PATH = img
         this.ELEMENT = document.createElement(tag);
-        this.RECT = this.getRect()
+        
         
         document.body.append(this.ELEMENT);
 
@@ -19,6 +19,8 @@ class Sprite{
         this.ELEMENT.style.top = `${this.Y}px`;
         this.ELEMENT.style.width = `${this.WIDTH}px`;
         this.ELEMENT.style.height = `${this.HEIGHT}px`;
+
+        this.RECT = this.getRect();
     }
 
     getRect(){
