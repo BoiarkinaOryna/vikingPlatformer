@@ -6,23 +6,27 @@ class Character extends Sprite{
         this.HEALTH = health;
         this.DMG = dmg;
         this.IMG_NUM = 1;
+        this.JUMP = false;
+        this.JUMP_DISTANCE = 120;
+        this.GRAVITY = false;
     };
 
     animation(){
-        if (this.IMG_NUM < 3){;
+        if (this.IMG_NUM < 7){;
             this.IMG_NUM ++;
         } else{
             this.IMG_NUM = 2;
-        }
-
-        this.IMG_PATH = `../images/character${this.IMG_NUM}.png`;
+        }this.IMG_PATH = `../images/character${this.IMG_NUM}.png`;
         this.ELEMENT.src = this.IMG_PATH;
-
+        
     }
 
-    move(key, listElem){
-        switch (key){
-            case "KeyD":
+    move(listElem, keyPressed){
+        let entriesArray = Object.entries(keyPressed);
+        this.gravity(listElem)
+        for (let entry of entriesArray){
+            console.log(entry);
+            if (entry.at(0) == "KeyD" && entry.at(1) == true){
                 this.ELEMENT.classList.remove("left");
                 this.ELEMENT.classList.add("right");
                 this.animation();
@@ -32,9 +36,9 @@ class Character extends Sprite{
                     this.X += 5;
                     this.ELEMENT.style.left = `${this.X}px`;
                 }
-                break;
+            }
 
-            case "KeyA":
+            if (entry.at(0) == "KeyA" && entry.at(1) == true){
                 this.ELEMENT.classList.remove("right");
                 this.ELEMENT.classList.add("left");
                 this.animation();
@@ -43,7 +47,17 @@ class Character extends Sprite{
                     this.X -= 5;
                     this.ELEMENT.style.left = `${this.X}px`;
                 }
-                break;
+            }
+
+            if (entry.at(0) == "KeyW" && entry.at(1) == true && this.JUMP == false && this.GRAVITY == false){
+                this.JUMP = true;
+            }
+
+            if (this.JUMP == true){
+                this.jump(listElem)
+            }
+
+            
         }
     }
     collisionRight(listElem){
@@ -75,6 +89,57 @@ class Character extends Sprite{
                 }}};
         return collide;
     };
+
+    gravity(listElem){
+        let collDown = this.collisionDown(listElem)
+        if (collDown == false && this.JUMP == false){
+            this.Y += 5;
+            this.ELEMENT.style.top = `${this.Y}px`;
+            this.GRAVITY = true;
+            this.JUMP_DISTANCE = 120;
+        } else{
+            this.GRAVITY = false;
+        }
+    };
+
+    collisionDown(listElem){
+        let collide = false;
+        for (let block of listElem){
+            let blockRect = block.RECT;
+            let chRect = this.getRect()
+            if (chRect.right > blockRect.left && chRect.left < blockRect.right){
+                if (chRect.bottom >= blockRect.top && chRect.top < blockRect.top){
+                    collide = true;
+                    break;
+                }}};
+        return collide;
+    };
+
+    collisionUp(listElem){
+        let collide = false;
+        for (let block of listElem){
+            let blockRect = block.RECT;
+            let chRect = this.getRect()
+            if (chRect.right > blockRect.left && chRect.left < blockRect.right){
+                if (chRect.top > blockRect.bottom && chRect.bottom > blockRect.bottom){
+                    collide = true;
+                    break;
+                }}};
+        return collide;
+    };
+    jump(listElem){
+        if (this.GRAVITY == false){
+            this.Y -= 5;
+            this.ELEMENT.style.top = `${this.Y}px`;
+            this.JUMP_DISTANCE -= 5;
+            if (this.JUMP_DISTANCE <= 0){
+                this.JUMP = false;
+                this.GRAVITY = true;
+            }
+        // this.GRAVITY = false;
+        }
+    }
+    
 };
 
 

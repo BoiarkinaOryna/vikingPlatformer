@@ -4,6 +4,11 @@
     background-size: 100%;
 }
 
+.right{
+    z-index: 1;
+}
 .left{
     transform: scale(-1, 1);
+    z-index: 1;
 }
+

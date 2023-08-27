@@ -16,12 +16,14 @@ function createMap(listMap){
                     listElem.push(block);
                     break;
                 
-                case "h":
-                    hero = new Character(x, y, 60, 90, "../images/character1.png", "img", 30, 5, "Георгій")
-                    break;
                 case "n":
-                    let npc = new Npc(x, y, 60, 100, "./images/character2.png", "img", "Ben")
+                    let npc = new Npc(x, y, 60, 100, "./images/vikingNPC.png", "img", "Ben")
                     break;
+
+                case "h":
+                    hero = new Character(x, y, 60, 100, "../images/character1.png", "img", 30, 5, "Георгій")
+                    break;
+
             };
             x += 100;
         };

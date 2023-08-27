@@ -5,7 +5,6 @@ class Npc extends Sprite{
         super(x, y, width, height, imgPath, elementName);
         this.NAME = name;
         this.IMG_NUM = 1;
-        this.ELEMENT_NAME = elementName;
     }
 }
 
