@@ -13,6 +13,7 @@ class Npc extends Sprite{
         // console.log(text.A);
         for(let repl of text.A){
             let [whoTalks, p] = repl.split(':');
+            let chat = new Sprite(this.X - 200, this.Y - 100, 200, 90, "./images/chat.png");
             console.log(whoTalks, p);
             console.log(this.replica);
             this.repcila(whoTalks, p);
