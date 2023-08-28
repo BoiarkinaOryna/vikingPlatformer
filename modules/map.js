@@ -7,6 +7,7 @@ function createMap(listMap){
     let x = 0;
     let y = 0;
     let hero;
+    let npc;
 
     for (let row of listMap){
         for (let cell of row){
@@ -17,11 +18,11 @@ function createMap(listMap){
                     break;
                 
                 case "n":
-                    let npc = new Npc(x, y, 60, 100, "./images/vikingNPC.png", "img", "Ben")
+                    npc = new Npc(x, y, 60, 100, "./images/vikingNPC.png", "img", "Ben")
                     break;
 
                 case "h":
-                    hero = new Character(x, y, 60, 100, "../images/character1.png", "img", 30, 5, "Георгій")
+                    hero = new Character(x, y, 60, 120, "../images/character1.png", "img", 30, 5, "Георгій")
                     break;
 
             };
@@ -31,7 +32,7 @@ function createMap(listMap){
         x = 0;
     };
 
-    return [listElem, hero];
+    return [listElem, hero, npc];
 };
 
 export default createMap;

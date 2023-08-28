@@ -25,13 +25,13 @@ class Character extends Sprite{
         let entriesArray = Object.entries(keyPressed);
         this.gravity(listElem)
         for (let entry of entriesArray){
-            console.log(entry);
+            // console.log(entry);
             if (entry.at(0) == "KeyD" && entry.at(1) == true){
                 this.ELEMENT.classList.remove("left");
                 this.ELEMENT.classList.add("right");
                 this.animation();
                 let collRight = this.collisionRight(listElem);
-                console.log(collRight);
+                // console.log(collRight);
                 if (collRight == false){
                     this.X += 5;
                     this.ELEMENT.style.left = `${this.X}px`;
@@ -120,8 +120,11 @@ class Character extends Sprite{
         for (let block of listElem){
             let blockRect = block.RECT;
             let chRect = this.getRect()
+            console.log(1)
             if (chRect.right > blockRect.left && chRect.left < blockRect.right){
-                if (chRect.top > blockRect.bottom && chRect.bottom > blockRect.bottom){
+                console.log(2)
+                if (chRect.top >= blockRect.bottom && chRect.bottom < blockRect.bottom){
+                    console.log(3)
                     collide = true;
                     break;
                 }}};
@@ -129,18 +132,18 @@ class Character extends Sprite{
     };
     jump(listElem){
         if (this.GRAVITY == false){
-            this.Y -= 5;
-            this.ELEMENT.style.top = `${this.Y}px`;
-            this.JUMP_DISTANCE -= 5;
-            if (this.JUMP_DISTANCE <= 0){
-                this.JUMP = false;
-                this.GRAVITY = true;
-            }
-        // this.GRAVITY = false;
-        }
-    }
+            let collisionUp = this.collisionUp(listElem)
+            console.log(collisionUp)
+            if(collisionUp == false){
+                this.Y -= 5;
+                this.ELEMENT.style.top = `${this.Y}px`;
+                this.JUMP_DISTANCE -= 5;
+                if (this.JUMP_DISTANCE <= 0){
+                    this.JUMP = false;
+                    this.GRAVITY = true;
+        }}}};
     
-};
+    };
 
 
 export default Character;
