@@ -7,8 +7,8 @@ let map = [
     "00000000000111110".split(""),
     "00000000000000000".split(""),
     "00011000000000000".split(""),
-    "h00000000n0000000".split(""),
-    "11000001111111111".split(""),
+    "000000000n0000000".split(""),
+    "11h00001111111111".split(""),
     "01111111000000000".split(""),
     "00000000000000000".split(""),
     "00000000000000000".split("")
@@ -23,14 +23,15 @@ let [listElem, hero, npc] = createMap(map)
 function gameLoop(){
     setTimeout(gameLoop, 16.6);
     hero.move(listElem, keyPressed)
+    // npc.dialog()
 }
 
 gameLoop();
 
 document.addEventListener("keydown", (event) => {
     npc.dialog()
-    // let key = event.code;
-    // keyPressed[key] = true;
+    let key = event.code;
+    keyPressed[key] = true;
 });
 
 document.addEventListener("keyup", (event) => {

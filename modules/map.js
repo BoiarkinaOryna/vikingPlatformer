@@ -14,15 +14,16 @@ function createMap(listMap){
             switch (cell){
                 case "1":
                     let block = new Sprite(x, y, 100, 100, "../images/1stWorldBlock.png");
+                    block.ELEMENT.classList.add("block")
                     listElem.push(block);
                     break;
                 
                 case "n":
-                    npc = new Npc(x, y, 60, 100, "./images/vikingNPC.png", "img", "Ben")
+                    npc = new Npc(x, y - 20, 70, 120, "./images/vikingNPC.png", "img", "Ben")
                     break;
 
                 case "h":
-                    hero = new Character(x, y, 60, 120, "../images/character1.png", "img", 30, 5, "Георгій")
+                    hero = new Character(x, y - 20, 80, 120, "../images/character1.png", "img", 30, 5, "Георгій")
                     break;
 
             };

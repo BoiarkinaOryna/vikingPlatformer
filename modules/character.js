@@ -7,7 +7,7 @@ class Character extends Sprite{
         this.DMG = dmg;
         this.IMG_NUM = 1;
         this.JUMP = false;
-        this.JUMP_DISTANCE = 120;
+        this.JUMP_DISTANCE = 200;
         this.GRAVITY = false;
     };
 
@@ -24,9 +24,11 @@ class Character extends Sprite{
     move(listElem, keyPressed){
         let entriesArray = Object.entries(keyPressed);
         this.gravity(listElem)
+        // console.log(this.JUMP_DISTANCE);
         for (let entry of entriesArray){
             // console.log(entry);
             if (entry.at(0) == "KeyD" && entry.at(1) == true){
+                // console.log(true);
                 this.ELEMENT.classList.remove("left");
                 this.ELEMENT.classList.add("right");
                 this.animation();
@@ -96,7 +98,7 @@ class Character extends Sprite{
             this.Y += 5;
             this.ELEMENT.style.top = `${this.Y}px`;
             this.GRAVITY = true;
-            this.JUMP_DISTANCE = 120;
+            this.JUMP_DISTANCE = 200;
         } else{
             this.GRAVITY = false;
         }
@@ -120,11 +122,11 @@ class Character extends Sprite{
         for (let block of listElem){
             let blockRect = block.RECT;
             let chRect = this.getRect()
-            console.log(1)
+            // console.log(1)
             if (chRect.right > blockRect.left && chRect.left < blockRect.right){
-                console.log(2)
-                if (chRect.top >= blockRect.bottom && chRect.bottom < blockRect.bottom){
-                    console.log(3)
+                // console.log(2)
+                if (chRect.top <= blockRect.bottom && chRect.bottom > blockRect.bottom){
+                    // console.log(3)
                     collide = true;
                     break;
                 }}};
@@ -132,16 +134,19 @@ class Character extends Sprite{
     };
     jump(listElem){
         if (this.GRAVITY == false){
-            let collisionUp = this.collisionUp(listElem)
-            console.log(collisionUp)
-            if(collisionUp == false){
-                this.Y -= 5;
+            let collisionUp = this.collisionUp(listElem);
+            // console.log(collisionUp);
+
+            if(collisionUp == false && this.JUMP_DISTANCE > 0){
+                this.Y -= 4;
                 this.ELEMENT.style.top = `${this.Y}px`;
-                this.JUMP_DISTANCE -= 5;
-                if (this.JUMP_DISTANCE <= 0){
-                    this.JUMP = false;
-                    this.GRAVITY = true;
-        }}}};
+                this.JUMP_DISTANCE -= 4;
+            }
+            else{
+                this.JUMP = false;
+                this.GRAVITY = true;
+                this.JUMP_DISTANCE = 200;
+            }}};
     
     };
 

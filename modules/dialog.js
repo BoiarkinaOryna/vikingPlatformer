@@ -1,6 +1,6 @@
 class Dialogs{
-    constructor(a = ["n:fkleswjg", "c:njkgnrk", "n:mklwk", "c:ksgnwl"]){
-        this.A = a;
+    constructor(text = ["n:fkleswjg", "c:njkgnrk", "n:mklwk", "c:ksgnwl"]){
+        this.TEXT = text; 
     }
 }
 

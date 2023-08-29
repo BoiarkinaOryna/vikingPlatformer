@@ -7,21 +7,29 @@ class Npc extends Sprite{
         super(x, y, width, height, imgPath, elementName);
         this.NAME = name;
         this.IMG_NUM = 1;
+        this.CHAT;
     }
     dialog(){
+        
         let text = new Dialogs;
         // console.log(text.A);
-        for(let repl of text.A){
+        for(let repl of text.TEXT){
             let [whoTalks, p] = repl.split(':');
-            let chat = new Sprite(this.X - 200, this.Y - 100, 200, 90, "./images/chat.png");
-            console.log(whoTalks, p);
-            console.log(this.replica);
-            this.repcila(whoTalks, p);
+
+            this.CHAT = new Sprite(0, 700, document.body.clientWidth, document.body.clientHeight - 700, "./images/chat.png");
+            this.CHAT.ELEMENT.classList.add("chat");
+            // console.log(whoTalks, p);
+            // console.log(this.replica);
+            this.replica(whoTalks, p);
     }}
     replica(whoTalks, p){
         if (whoTalks == "n"){
-            let chat = new Sprite(this.X - 200, this.Y - 200, 180, 180, "./images/chat.png");
-            par = document.createElement("p");
+            let par = document.createElement("p");
+            // par.style.textAlign = "center";
+            // par.style.textIndent = `${this.CHAT.Y + 20}px`;
+            par.innerText = p;
+
+            document.querySelector(".chat").append(par);
         }
     }
 }
