@@ -1,7 +1,4 @@
-class Dialogs{
-    constructor(text = ["n:fkleswjg", "c:njkgnrk", "n:mklwk", "c:ksgnwl"]){
-        this.TEXT = text; 
-    }
-}
+const viking = ["../images/Afl.png", "fkleswjg", "njkgnrk", "mklwk", "ksgnwl"];
+const vampire = ["dsafds", "iofdusjogf"];
 
-export default Dialogs
+export default viking;

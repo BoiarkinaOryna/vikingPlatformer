@@ -1,5 +1,6 @@
 import createMap from "./modules/map.js";
-
+import viking from "./modules/dialog.js";
+import Npc from "./modules/Npc.js";
 let keyPressed = {};
 
 let map = [
@@ -8,7 +9,7 @@ let map = [
     "00000000000000000".split(""),
     "00011000000000000".split(""),
     "000000000n0000000".split(""),
-    "11h00001111111111".split(""),
+    "11h00e01111111111".split(""),
     "01111111000000000".split(""),
     "00000000000000000".split(""),
     "00000000000000000".split("")
@@ -18,20 +19,25 @@ let map = [
 // h - герой
 // e - ворог
 
-let [listElem, hero, npc] = createMap(map)
+let [listElem, hero, listNpc, listEnemies] = createMap(map)
 
 function gameLoop(){
     setTimeout(gameLoop, 16.6);
     hero.move(listElem, keyPressed)
+    for (let enemy of listEnemies){
+        enemy.enemyMove(listElem);
+    }
     // npc.dialog()
 }
 
 gameLoop();
 
 document.addEventListener("keydown", (event) => {
-    npc.dialog()
     let key = event.code;
     keyPressed[key] = true;
+    for (let npc of listNpc){
+        npc.dialog(key, viking, hero, listNpc);
+    }
 });
 
 document.addEventListener("keyup", (event) => {
