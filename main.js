@@ -35,6 +35,10 @@ gameLoop();
 document.addEventListener("keydown", (event) => {
     let key = event.code;
     keyPressed[key] = true;
+    if (keyPressed["KeyW"] == true){
+        hero.IMG_PATH = `../images/characterJump.png`;
+        hero.ELEMENT.src = hero.IMG_PATH;
+    }
     for (let npc of listNpc){
         npc.dialog(key, viking, hero, listNpc);
     }

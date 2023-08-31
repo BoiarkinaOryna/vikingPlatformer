@@ -55,6 +55,7 @@ class Character extends Sprite{
 
             if (this.JUMP == true){
                 this.jump(listElem)
+
             }
 
             

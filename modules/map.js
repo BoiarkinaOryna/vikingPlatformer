@@ -23,7 +23,7 @@ function createMap(listMap){
                     break;
                 
                 case "n":
-                    npc = new Npc(x, y - 20, 70, 120, "./images/vikingNPC.png", "img", "Ben");
+                    npc = new Npc(x, y - 20, 70, 120, "./images/vikingNPC.png", "img", "Ікінг");
                     listNpc.push(npc);
                     break;
 
@@ -31,7 +31,7 @@ function createMap(listMap){
                     hero = new Character(x, y - 20, 70, 120, "../images/character1.png", "img", 30, 5, "Георгій")
                     break;
                 case "e":
-                    enemy = new Enemy(x, y + 20, 60, 80, "../images/Alf.png", "img");
+                    enemy = new Enemy(x, y + 20, 60, 80, "../images/Elf.png", "img");
                     listEnemies.push(enemy);
                     break;
                 
