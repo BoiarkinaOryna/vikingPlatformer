@@ -51,3 +51,8 @@ document.addEventListener("keyup", (event) => {
     hero.IMG_PATH = `../images/character1.png`;
     hero.ELEMENT.src = hero.IMG_PATH;
 });
+
+document.addEventListener("click", (event) => {
+    hero.strike(listEnemies);
+});
+

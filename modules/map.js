@@ -31,7 +31,7 @@ function createMap(listMap){
                     hero = new Character(x, y - 20, 70, 120, "../images/character1.png", "img", 30, 5, "Георгій")
                     break;
                 case "e":
-                    enemy = new Enemy(x, y + 20, 60, 80, "../images/Elf.png", "img");
+                    enemy = new Enemy(x, y + 20, 60, 80, "../images/Elf.png", "img", 300, 1);
                     listEnemies.push(enemy);
                     break;
                 

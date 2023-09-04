@@ -1,12 +1,10 @@
-import Sprite from "/modules/settings.js";
-class Character extends Sprite{
+import MovingSprite from "/modules/movingSprite.js";
+class Character extends MovingSprite{
     constructor(x, y, width, height, imgPath, elementName, health, dmg, name){
-        super(x, y, width, height, imgPath, elementName);
+        super(x, y, width, height, imgPath, elementName, health, dmg);
         this.NAME = name;
-        this.HEALTH = health;
-        this.DMG = dmg;
         this.IMG_NUM = 1;
-
+        this.ELEMENT.classList.add("right");
     };
 
     animation(){

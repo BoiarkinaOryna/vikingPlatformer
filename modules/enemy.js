@@ -1,10 +1,12 @@
-import Sprite from '/modules/settings.js';
+import MovingSprite from '/modules/movingSprite.js';
 
-class Enemy extends Sprite{
-    constructor(x, y, width, height, img, tag, health = 10, dmg = 2){
-        super(x, y, width, height, img, tag);
+class Enemy extends MovingSprite{
+    constructor(x, y, width, height, img, tag, health, dmg){
+        super(x, y, width, height, img, tag, health, dmg);
+
         this.MOVING_RIGHT = false;
         this.MOVING_LEFT = true;
+    
         
     }
     enemyMove(listElem){
