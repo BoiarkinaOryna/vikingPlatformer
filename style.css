@@ -1,5 +1,5 @@
 .bg{
-    background-image: url(images/backgroundLocation1Level1.png);
+    background-image: url(/images/backgroundLocation2Level1.png);
     background-repeat: no-repeat;
     background-size: 100%;
     /* width: 9%; */
@@ -22,4 +22,5 @@ p{
     position: absolute;
     top: 80%;
     left: 30%;
+    right: 5%;
 }

@@ -18,12 +18,14 @@ class Character extends MovingSprite{
     }
 
     move(listElem, keyPressed){
+        
         let entriesArray = Object.entries(keyPressed);
         this.gravity(listElem)
         // console.log(this.JUMP_DISTANCE);
         for (let entry of entriesArray){
             // console.log(entry);
             if (entry.at(0) == "KeyD" && entry.at(1) == true){
+                this.STATUS = "running";
                 // console.log(true);
                 this.ELEMENT.classList.remove("left");
                 this.ELEMENT.classList.add("right");
@@ -37,6 +39,7 @@ class Character extends MovingSprite{
             }
 
             if (entry.at(0) == "KeyA" && entry.at(1) == true){
+                this.STATUS = "running";
                 this.ELEMENT.classList.remove("right");
                 this.ELEMENT.classList.add("left");
                 this.animation();
@@ -52,9 +55,12 @@ class Character extends MovingSprite{
             }
 
             if (this.JUMP == true){
-                this.jump(listElem)
-
+                this.jump(listElem);
             }
+
+            if (this.GRAVITY == true){
+                this.STATUS = "falling";
+            } 
 
             
         }

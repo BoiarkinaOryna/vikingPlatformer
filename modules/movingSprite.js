@@ -10,7 +10,8 @@ class MovingSprite extends Sprite{
         this.HEALTH = health;
         this.DMG = dmg;
         this.HIT;
-        this.STRIKE_NUM = 0;
+        this.STRIKE_NUM = 3;
+        this.STATUS = "idle";
     }
     collisionRight(listElem){
         let collide = false;
@@ -86,57 +87,52 @@ class MovingSprite extends Sprite{
     };
 
     strike(listEnemies){
-        // setTimeout(() => {this.ELEMENT.style.width = "200px";
-
-            // while (this.STRIKE_NUM < 3){
-            //     setTimeout(() => {
-            //         this.STRIKE_NUM++;
-            //         console.log(this.STRIKE_NUM);
-            //         this.IMG_PATH = `../images/characterStrike${this.STRIKE_NUM}.png`;
-            //         // this.WEAPON = "../images/sword.png";
-            //         this.ELEMENT.src = this.IMG_PATH;
-            //     }, 100)
-
+        if (this.STATUS == "idle"){
+            this.STATUS = "attacking";
+            this.WIDTH = 200;
+            this.ELEMENT.style.width = `${this.WIDTH}px`;
+            // for (let num; num < 3; num++){
+            //     this.STRIKE_NUM = num;
+            this.ELEMENT.src = `../images/characterStrike${this.STRIKE_NUM}.png`;
             // }
-
             if (this.ELEMENT.classList.contains("right") == true){
-                this.HIT = new Hit(this.X + this.WIDTH, this.Y, this.WIDTH, this.HEIGHT, "../images/hitBox.png", "img");
+                this.HIT = new Hit(this.X + this.WIDTH, this.Y, 70, this.HEIGHT, "../images/hitBox.png", "img");
                 this.HIT.ELEMENT.classList.add("hit");
-                
+
             }
             else if (this.ELEMENT.classList.contains("left") == true){
-                this.HIT = new Hit(this.X - this.WIDTH, this.Y, this.WIDTH, this.HEIGHT, "../images/hitBox.png", "img");
+                this.HIT = new Hit(this.X - 70, this.Y, 70, this.HEIGHT, "../images/hitBox.png", "img");
                 this.HIT.ELEMENT.classList.add("hit");
             };
-
             let [collisionRight, enemyRight] = this.HIT.collisionRight(listEnemies);
             let [collisionLeft, enemyLeft] = this.HIT.collisionLeft(listEnemies);
             let [collisionUp, enemyUp] = this.HIT.collisionUp(listEnemies);
             let [collisionDown, enemyDown] = this.HIT.collisionDown(listEnemies);
-            
+
             if (collisionRight == true){
                 enemyRight.HEALTH -= this.DMG;
                 console.log(enemyRight);
             };
-
             if (collisionLeft == true){
                 console.log(enemyLeft);
                 enemyLeft.HEALTH -= this.DMG;
                 // console.log(enemyLeft.HEALTH);
             };
-
             if (collisionUp == true){
                 enemyUp.HEALTH -= this.DMG;
             };
-
             if (collisionDown == true){
                 enemyDown.HEALTH -= this.DMG;
             };
 
-
-            
-            setTimeout( () => {document.querySelector(".hit").remove()}, 300);
-            this.ELEMENT.style.width = `${this.WIDTH}px`;
+            setTimeout( () => {
+                document.querySelector(".hit").remove(),         
+                this.WIDTH = 70;
+                this.ELEMENT.style.width = `${this.WIDTH}px`;
+                this.ELEMENT.src = this.IMG_PATH;
+                this.STATUS = "idle";
+            }, 300);
+        }
     }
 };
 

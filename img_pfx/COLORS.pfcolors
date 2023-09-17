@@ -245,4 +245,32 @@ PIXELFORMER.COLORS
   {
   RGBA255 "255,124,19";
   }
+ COLOR
+  {
+  RGBA255 "107,125,89";
+  }
+ COLOR
+  {
+  RGBA255 "94,107,81";
+  }
+ COLOR
+  {
+  RGBA255 "119,109,102";
+  }
+ COLOR
+  {
+  RGBA255 "152,137,127";
+  }
+ COLOR
+  {
+  RGBA255 "99,80,58";
+  }
+ COLOR
+  {
+  RGBA255 "208,255,255";
+  }
+ COLOR
+  {
+  RGBA255 "231,254,254";
+  }
  }

@@ -10,7 +10,8 @@ class Npc extends Sprite{
         this.CHAT;
         this.REPLIC_NUM = 0;
         this.PARAGRAPH = document.createElement("p");
-        this.PARAGRAPH.classList.add("chat-text")
+        this.PARAGRAPH.classList.add("chat-text");
+        this.CHAT_LIST = document.getElementsByClassName("chat");
 
     }
     dialog(key, array, hero, listNpc){
@@ -22,20 +23,41 @@ class Npc extends Sprite{
                 this.CHAT = new Sprite(0, 700, document.body.clientWidth, document.body.clientHeight - 700, "./images/chat.png");
                 this.CHAT.ELEMENT.classList.add("chat");
                 if (array[this.REPLIC_NUM] != undefined){
-                    this.PARAGRAPH.innerText = array[this.REPLIC_NUM];
-                    
-                } else{
-                    this.REPLIC_NUM = 0;
-                }
-                document.body.append(this.PARAGRAPH);
-                // console.log("Параграф створено");
+                    console.log(array[this.REPLIC_NUM])
+                    let [whoTalks, text] = array[this.REPLIC_NUM].split(":");
+                    console.log(text);
+                    this.PARAGRAPH.innerText = text;
+                    if (whoTalks == "v"){
+                        let profile = new Sprite(200, 720, 150, 150, "./images/vikProfile.png");
+                        profile.ELEMENT.classList.add("chat");
+                    }
+                    if (whoTalks == "c"){
+                        let profile = new Sprite(200, 720, 150, 150, "./images/chProfile.png");
+                        profile.ELEMENT.classList.add("chat");
+                    } 
+                        
+                    } else{
+                        this.REPLIC_NUM = 0;
+                        try{
+                            for(let elem of document.getElementsByClassName("chat")){
+                                elem.remove();
+                            }
+        
+                            // document.querySelector(".chat-text").innerText = "";
+        
+                        } catch{
+                            "pass";
+                        };
+                    }
+                    document.body.append(this.PARAGRAPH);
+                    // console.log("Параграф створено");
             } else{
                 try{
                     for (let elem of document.getElementsByClassName("chat")){
                         elem.remove();
                     }
 
-                    document.querySelector(".chat-text").innerText = "";
+                    // document.querySelector(".chat-text").innerText = "";
 
                 } catch{
                     "pass";
@@ -45,11 +67,12 @@ class Npc extends Sprite{
         
         else{
             try{
-                for (let elem of document.getElementsByClassName("chat")){
+                for(let elem of document.getElementsByClassName("chat")){
                     elem.remove();
                 }
 
                 document.querySelector(".chat-text").innerText = "";
+
             } catch{
                 "pass";
             }
