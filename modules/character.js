@@ -24,43 +24,54 @@ class Character extends MovingSprite{
         // console.log(this.JUMP_DISTANCE);
         for (let entry of entriesArray){
             // console.log(entry);
-            if (entry.at(0) == "KeyD" && entry.at(1) == true){
-                this.STATUS = "running";
+            if (entry.at(0) == "KeyD" && entry.at(1) == true && this.ATTACKING == false){
+                this.RUNNING = true;
+                this.IDLE = false;
+                
                 // console.log(true);
                 this.ELEMENT.classList.remove("left");
                 this.ELEMENT.classList.add("right");
-                this.animation();
+                if (this.RUNNING == true){
+                    this.animation();
+                }
                 let collRight = this.collisionRight(listElem);
                 // console.log(collRight);
                 if (collRight == false){
                     this.X += 5;
                     this.ELEMENT.style.left = `${this.X}px`;
+                    this.RUNNING = false;
                 }
             }
 
-            if (entry.at(0) == "KeyA" && entry.at(1) == true){
-                this.STATUS = "running";
+            if (entry.at(0) == "KeyA" && entry.at(1) == true && this.ATTACKING == false){
+                this.RUNNING = true;
+                this.IDLE = false;
+
                 this.ELEMENT.classList.remove("right");
                 this.ELEMENT.classList.add("left");
-                this.animation();
+                if (this.RUNNING == true){
+                    this.animation();
+                }
+                
                 let collLeft = this.collisionLeft(listElem);
                 if(collLeft == false){
                     this.X -= 5;
                     this.ELEMENT.style.left = `${this.X}px`;
+                    this.RUNNING = false;
                 }
             }
 
             if (entry.at(0) == "KeyW" && entry.at(1) == true && this.JUMP == false && this.GRAVITY == false){
                 this.JUMP = true;
+                this.JUMPING = true;
+                this.IDLE = false;
             }
 
             if (this.JUMP == true){
                 this.jump(listElem);
+                this.JUMPING = false;
+                this.IDLE = true;
             }
-
-            if (this.GRAVITY == true){
-                this.STATUS = "falling";
-            } 
 
             
         }
@@ -71,16 +82,24 @@ class Character extends MovingSprite{
             let collisionUp = this.collisionUp(listElem);
             // console.log(collisionUp);
 
-            if(collisionUp == false && this.JUMP_DISTANCE > 0){
+            if (collisionUp == false){
                 this.Y -= 4;
                 this.ELEMENT.style.top = `${this.Y}px`;
                 this.JUMP_DISTANCE -= 4;
-            }
-            else{
+                if (this.JUMP_DISTANCE <= 0){
+                    this.JUMP = false;
+                    this.GRAVITY = true;
+                }
+            } else{
                 this.JUMP = false;
                 this.GRAVITY = true;
-                this.JUMP_DISTANCE = 200;
-            }}};
+            }
+            // else{
+
+            //     this.JUMP_DISTANCE = 200;
+            //     // this.JUMPING = false;
+            //     // this.IDLE = true;
+            }};
     
     };
 

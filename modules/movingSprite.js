@@ -11,7 +11,13 @@ class MovingSprite extends Sprite{
         this.DMG = dmg;
         this.HIT;
         this.STRIKE_NUM = 3;
-        this.STATUS = "idle";
+        this.IDLE = true;
+        this.RUNNING = false;
+        this.JUMPING = false;
+        this.ATTACKING = false;
+        // this.FALL_COUNT = 0;
+        // this.FALL_SPEED = 50;
+        // this.STATUS = "idle";
     }
     collisionRight(listElem){
         let collide = false;
@@ -46,10 +52,11 @@ class MovingSprite extends Sprite{
     gravity(listElem){
         let collDown = this.collisionDown(listElem)
         if (collDown == false && this.JUMP == false){
-            this.Y += 5;
+            this.Y += 4;
             this.ELEMENT.style.top = `${this.Y}px`;
             this.GRAVITY = true;
             this.JUMP_DISTANCE = 200;
+            this.JUMP = false;
         } else{
             this.GRAVITY = false;
         }
@@ -87,21 +94,37 @@ class MovingSprite extends Sprite{
     };
 
     strike(listEnemies){
-        if (this.STATUS == "idle"){
-            this.STATUS = "attacking";
-            this.WIDTH = 200;
+        if (this.IDLE == true && this.JUMPING == false){
+            this.ATTACKING = true;
+            this.IDLE = false;
+            this.WIDTH = 150;
             this.ELEMENT.style.width = `${this.WIDTH}px`;
+
+            
+            this.IMG_PATH = `../images/characterStrike${this.STRIKE_NUM}.png`;
+            this.ELEMENT.src = this.IMG_PATH;
+
+            // if (this.STRIKE_NUM > 2){
+            //     this.STRIKE_NUM = 1;
+            //     this.STATUS = "idle";
+            //     return;
+
+            // }
             // for (let num; num < 3; num++){
             //     this.STRIKE_NUM = num;
-            this.ELEMENT.src = `../images/characterStrike${this.STRIKE_NUM}.png`;
+            // this.ELEMENT.src = `../images/characterStrike${this.STRIKE_NUM}.png`;
             // }
             if (this.ELEMENT.classList.contains("right") == true){
-                this.HIT = new Hit(this.X + this.WIDTH, this.Y, 70, this.HEIGHT, "../images/hitBox.png", "img");
+                this.HIT = new Hit(this.X + 75, this.Y, 75, this.HEIGHT, undefined, "div");
+                this.HIT.ELEMENT.style.backgroundColor = "red";
                 this.HIT.ELEMENT.classList.add("hit");
 
             }
             else if (this.ELEMENT.classList.contains("left") == true){
-                this.HIT = new Hit(this.X - 70, this.Y, 70, this.HEIGHT, "../images/hitBox.png", "img");
+                this.X -= 75;
+                this.HIT = new Hit(this.X, this.Y, 75, this.HEIGHT, undefined, "div");
+                this.ELEMENT.style.left = this.X;
+                this.HIT.ELEMENT.style.backgroundColor = "red";
                 this.HIT.ELEMENT.classList.add("hit");
             };
             let [collisionRight, enemyRight] = this.HIT.collisionRight(listEnemies);
@@ -125,13 +148,25 @@ class MovingSprite extends Sprite{
                 enemyDown.HEALTH -= this.DMG;
             };
 
-            setTimeout( () => {
+
+
+            setTimeout(() => {
                 document.querySelector(".hit").remove(),         
                 this.WIDTH = 70;
+                if (this.ELEMENT.classList.contains("left") == true){
+                    this.X += 75;
+                    this.ELEMENT.style.left = this.X;
+                    
+                };
+    
+                this.IMG_PATH = `../images/character1.png`
                 this.ELEMENT.style.width = `${this.WIDTH}px`;
                 this.ELEMENT.src = this.IMG_PATH;
-                this.STATUS = "idle";
-            }, 300);
+                this.IDLE = true;
+                this.ATTACKING = false;
+            }, 100);
+            
+
         }
     }
 };

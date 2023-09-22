@@ -56,7 +56,7 @@ export function createMap(){
         for (let cell of row){
             switch (cell){
                 case "1":
-                    let block = new Sprite(x, y, 100, 100, "../images/1stWorldBlock.png");
+                    let block = new Sprite(x, y, 98.8, 98.8, "../images/1stWorldBlock.png");
                     block.ELEMENT.classList.add("block")
                     listElem.push(block);
                     break;
@@ -80,9 +80,9 @@ export function createMap(){
 
 
             };
-            x += 100;
+            x += 98.8;
         };
-        y += 100;
+        y += 98.8;
         x = 0;
     };
 };

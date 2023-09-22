@@ -9,9 +9,14 @@ let keyPressed = {};
 createMap();
 
 function gameLoop(){
-    console.log(hero.STATUS);
+    console.log(hero.Y);
+    // if (hero.collisionDown == false){
+    //     hero.Y -= Math.min(5, (hero.FALL_COUNT / 16.6) * hero.FALL_SPEED);
+    //     hero.ELEMENT.style.top = `${hero.Y}px`;
+    //     hero.FALL_COUNT++;
+    // }
     setTimeout(gameLoop, 16.6);
-    hero.move(listElem, keyPressed)
+    hero.move(listElem, keyPressed);
     for (let enemy of listEnemies){
         enemy.enemyMove(listElem);
     }
@@ -30,6 +35,8 @@ document.addEventListener("keydown", (event) => {
     for (let npc of listNpc){
         npc.dialog(key, viking, hero, listNpc);
     }
+    // let rectBody = innerWidth;
+    // console.log(rectBody)
 });
 
 document.addEventListener("keyup", (event) => {
@@ -38,10 +45,11 @@ document.addEventListener("keyup", (event) => {
     hero.IMG_NUM = 2;
     hero.IMG_PATH = `../images/character1.png`;
     hero.ELEMENT.src = hero.IMG_PATH;
-    hero.STATUS = "idle";
+    hero.IDLE = true;
 });
 
 document.addEventListener("click", (event) => {
+    // hero.STATUS = "attacking";
     hero.strike(listEnemies);
 });
 
