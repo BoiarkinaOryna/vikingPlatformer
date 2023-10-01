@@ -18,12 +18,13 @@ class MovingSprite extends Sprite{
         // this.FALL_COUNT = 0;
         // this.FALL_SPEED = 50;
         // this.STATUS = "idle";
+
     }
     collisionRight(listElem){
         let collide = false;
         for (let block of listElem){
             let blockRect = block.RECT;
-            // console.log(this.RECT);
+            // console.log("block.Y = ", block.Y);
             let chRect = this.getRect()
             // console.log("block.RECT", block.RECT);
             if (chRect.bottom > block.RECT.top && chRect.top < block.RECT.bottom){
@@ -52,10 +53,10 @@ class MovingSprite extends Sprite{
     gravity(listElem){
         let collDown = this.collisionDown(listElem)
         if (collDown == false && this.JUMP == false){
-            this.Y += 4;
+            this.Y += 3.952;
             this.ELEMENT.style.top = `${this.Y}px`;
             this.GRAVITY = true;
-            this.JUMP_DISTANCE = 200;
+            this.JUMP_DISTANCE = 197.6;
             this.JUMP = false;
         } else{
             this.GRAVITY = false;
@@ -92,7 +93,11 @@ class MovingSprite extends Sprite{
                 }}};
         return collide;
     };
-
+    death(){
+        if (this.HEALTH <= 0){
+            this.ELEMENT.remove();
+        };
+    };
     strike(listEnemies){
         if (this.IDLE == true && this.JUMPING == false){
             this.ATTACKING = true;
@@ -132,23 +137,26 @@ class MovingSprite extends Sprite{
             let [collisionUp, enemyUp] = this.HIT.collisionUp(listEnemies);
             let [collisionDown, enemyDown] = this.HIT.collisionDown(listEnemies);
 
+            // console.log(this.HIT)
+
             if (collisionRight == true){
                 enemyRight.HEALTH -= this.DMG;
-                console.log(enemyRight);
-            };
-            if (collisionLeft == true){
-                console.log(enemyLeft);
+                console.log(enemyRight.HEALTH);
+                enemyRight.death();
+            } else if (collisionLeft == true){
+                // console.log(enemyLeft);
                 enemyLeft.HEALTH -= this.DMG;
-                // console.log(enemyLeft.HEALTH);
-            };
-            if (collisionUp == true){
+                console.log(enemyLeft.HEALTH);
+                enemyLeft.death();
+            } else if (collisionUp == true){
                 enemyUp.HEALTH -= this.DMG;
-            };
-            if (collisionDown == true){
+                enemyUp.death();
+            } else if (collisionDown == true){
                 enemyDown.HEALTH -= this.DMG;
+                enemyDown.death();
             };
 
-
+            
 
             setTimeout(() => {
                 document.querySelector(".hit").remove(),         
@@ -165,8 +173,6 @@ class MovingSprite extends Sprite{
                 this.IDLE = true;
                 this.ATTACKING = false;
             }, 100);
-            
-
         }
     }
 };

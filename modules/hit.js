@@ -3,7 +3,7 @@ import Sprite from "/modules/settings.js";
 class Hit extends Sprite{
     constructor(x, y, width, height, img, tag){
         super(x, y, width, height, img, tag);
-        
+
     }
     collisionRight(listElem){
         let collideblock;
@@ -15,6 +15,8 @@ class Hit extends Sprite{
             // console.log("block.RECT", block.RECT);
             if (chRect.bottom > block.RECT.top && chRect.top < block.RECT.bottom){
                 // console.log(1);
+                // console.log(`персонаж ${chRect.left}, ${chRect.right}`)
+                // console.log(`моб ${block.RECT.left}, ${block.RECT.right}`)
                 if (chRect.left <= block.RECT.left && chRect.right >= block.RECT.left){
                     // console.log(2);
                     collide = true;
@@ -23,7 +25,7 @@ class Hit extends Sprite{
                 }}};
         return [collide, collideblock];
     };
-    
+
     collisionLeft(listElem){
         let collide = false;
         let collideblock;

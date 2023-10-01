@@ -33,7 +33,9 @@ class Character extends MovingSprite{
                 this.ELEMENT.classList.add("right");
                 if (this.RUNNING == true){
                     this.animation();
+                    
                 }
+                // console.log(this.Y)
                 let collRight = this.collisionRight(listElem);
                 // console.log(collRight);
                 if (collRight == false){
@@ -83,9 +85,9 @@ class Character extends MovingSprite{
             // console.log(collisionUp);
 
             if (collisionUp == false){
-                this.Y -= 4;
+                this.Y -= 3.952;
                 this.ELEMENT.style.top = `${this.Y}px`;
-                this.JUMP_DISTANCE -= 4;
+                this.JUMP_DISTANCE -= 3.952;
                 if (this.JUMP_DISTANCE <= 0){
                     this.JUMP = false;
                     this.GRAVITY = true;
