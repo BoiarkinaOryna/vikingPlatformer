@@ -51,8 +51,8 @@ export function nextLevel(){
     }    
 }
 
-// let map = [map1, map2, map3];
-let map = [map2, map3, map1];
+let map = [map1, map2, map3];
+// let map = [map2, map3, map1];
 export function createMap(){
     let x = 0;
     let y = 0;

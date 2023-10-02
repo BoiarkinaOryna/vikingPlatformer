@@ -8,8 +8,8 @@ const submitLogin = document.getElementById("login-submit")
 
 writeIntoLocalStorage("user1", JSON.stringify(["password", "email"]));
 console.log(getFromLocalStorage("user1"));
-
-createMap();
+let registration = true;
+// createMap();
 
 function gameLoop(){
     // console.log(hero.Y);
@@ -33,45 +33,46 @@ function gameLoop(){
 
 gameLoop();
 
-document.addEventListener("keydown", (event) => {
-    let key = event.code;
-    keyPressed[key] = true;
-    if (keyPressed["KeyW"] == true){
-        hero.IMG_PATH = `../images/characterJump.png`;
-        hero.ELEMENT.src = hero.IMG_PATH;
-    }
-    for (let npc of listNpc){
-        if (keyPressed["KeyF"] == true){
-            npc.dialog(hero, listNpc);
-        } else{
-            for(let elem of document.getElementsByClassName("chat")){
-                elem.remove();
-            
-            }
-            document.querySelector(".chat-text").innerText = "";
+if(registration == false){
+        document.addEventListener("keydown", (event) => {
+        let key = event.code;
+        keyPressed[key] = true;
+        if (keyPressed["KeyW"] == true){
+            hero.IMG_PATH = `../images/characterJump.png`;
+            hero.ELEMENT.src = hero.IMG_PATH;
         }
-    }
-    // let rectBody = innerWidth;
-    // console.log(rectBody)
-});
-document.addEventListener("keyup", (event) => {
-    let key = event.code;
-    keyPressed[key] = false;
-    hero.IMG_NUM = 2;
-    hero.IMG_PATH = `../images/character1.png`;
-    hero.ELEMENT.src = hero.IMG_PATH;
-    hero.IDLE = true;
-});
-document.addEventListener("click", (event) => {
-    // hero.STATUS = "attacking";
-    hero.strike(listEnemies);
-});
+        for (let npc of listNpc){
+            if (keyPressed["KeyF"] == true){
+                npc.dialog(hero, listNpc);
+            } else{
+                for(let elem of document.getElementsByClassName("chat")){
+                    elem.remove();
+                
+                }
+                document.querySelector(".chat-text").innerText = "";
+            }
+        }
+        // let rectBody = innerWidth;
+        // console.log(rectBody)
+    });
+    document.addEventListener("keyup", (event) => {
+        let key = event.code;
+        keyPressed[key] = false;
+        hero.IMG_NUM = 2;
+        hero.IMG_PATH = `../images/character1.png`;
+        hero.ELEMENT.src = hero.IMG_PATH;
+        hero.IDLE = true;
+    });
+    document.addEventListener("click", (event) => {
+        // hero.STATUS = "attacking";
+        hero.strike(listEnemies);
+    });
 
 
-submitBtn.querySelector("click", (event) =>{
-    writeIntoLocalStorage(form.name.value, form.password.value);
-    submitBtn.id = "submitLogin";
-    document.querySelector("h1").innerText = "Login";
-})
+    submitBtn.querySelector("click", (event) =>{
+        writeIntoLocalStorage(form.name.value, form.password.value);
+        submitBtn.id = "submitLogin";
+        document.querySelector("h1").innerText = "Login";
+    })}
 
 submitLogin
