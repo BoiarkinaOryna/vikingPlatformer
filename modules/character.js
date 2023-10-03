@@ -101,9 +101,32 @@ class Character extends MovingSprite{
             //     this.JUMP_DISTANCE = 200;
             //     // this.JUMPING = false;
             //     // this.IDLE = true;
-            }};
-    
+            }
     };
+    
 
+    showDialog(listNpc){
+        // нет
+        if (this.collisionRight(listNpc) == true || this.collisionLeft(listNpc) == true){
+            this.SHOW_DIALOG = true;
+        } else{
+            this.SHOW_DIALOG = false;
+            try{
+                document.querySelector(".chat-text").remove();
+                let lengthArray = document.getElementsByClassName("chat").length
+                for (let chat; chat < lengthArray; chat++){
+                    document.querySelector(".chat").remove()
+                }
+                
+                document.querySelector(".profile").remove()
+            }
+            catch{
+                "pass";
+            }
+
+        }
+    };
+}
 
 export default Character;
+

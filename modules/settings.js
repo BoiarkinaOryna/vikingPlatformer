@@ -20,7 +20,10 @@ class Sprite{
         this.ELEMENT.style.top = `${this.Y}px`;
         this.ELEMENT.style.width = `${this.WIDTH}px`;
         this.ELEMENT.style.height = `${this.HEIGHT}px`;
-
+        this.ELEMENT.style.userSelect = "none";
+        this.ELEMENT.style.webkitUserSelect = "none";
+        this.ELEMENT.ondragstart = () => {return false};
+        
         this.RECT = this.getRect();
     }
 

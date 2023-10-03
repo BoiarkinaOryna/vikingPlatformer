@@ -40,7 +40,10 @@ export function nextLevel(){
 
         };
         hero.ELEMENT.remove();
+        console.log(document.body.classList.contains("level0"));
+        document.body.classList.remove(`level${currentLevel-1}`);
         document.body.classList.add(`level${currentLevel}`);
+        console.log(document.body.classList.contains("level0"));
         listElem = [];
         listEnemies = [];
         listNpc = [];

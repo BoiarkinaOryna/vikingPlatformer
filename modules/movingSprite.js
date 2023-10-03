@@ -141,12 +141,10 @@ class MovingSprite extends Sprite{
 
             if (collisionRight == true){
                 enemyRight.HEALTH -= this.DMG;
-                console.log(enemyRight.HEALTH);
                 enemyRight.death();
             } else if (collisionLeft == true){
                 // console.log(enemyLeft);
                 enemyLeft.HEALTH -= this.DMG;
-                console.log(enemyLeft.HEALTH);
                 enemyLeft.death();
             } else if (collisionUp == true){
                 enemyUp.HEALTH -= this.DMG;
