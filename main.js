@@ -8,8 +8,26 @@ const submitLogin = document.getElementById("login-submit")
 
 writeIntoLocalStorage("user1", JSON.stringify(["password", "email"]));
 console.log(getFromLocalStorage("user1"));
-let registration = false;
-createMap();
+let registration = 0;
+let crMap = false;
+
+submitBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    writeIntoLocalStorage(form.name.value, form.password.value);
+    submitBtn.id = "login-submit";
+    document.querySelector("h1").innerText = "Login";
+    registration++;
+    if  (registration == 2){
+        // console.log("registration2 =", registration);
+        if (crMap == false){
+            // console.log("crMap =", crMap);
+            document.getElementById("wrapper").remove();
+            createMap();
+            gameLoop();
+        }
+    }
+    console.log("registration =", registration);
+});
 
 function gameLoop(){
    
@@ -22,7 +40,7 @@ function gameLoop(){
     hero.showDialog(listNpc);
        
 }
-gameLoop();
+// gameLoop();
 
 
 // document.body.classList.add("level1");
@@ -50,13 +68,3 @@ document.addEventListener("click", (event) => {
     // hero.STATUS = "attacking";
     hero.strike(listEnemies);
 });
-
-
-    // submitBtn.querySelector("click", (event) =>{
-    //     writeIntoLocalStorage(form.name.value, form.password.value);
-    //     submitBtn.id = "submitLogin";
-    //     document.querySelector("h1").innerText = "Login";
-    // });
-   
-
-// submitLogin

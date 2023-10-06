@@ -59,14 +59,16 @@ class Enemy extends MovingSprite{
                 this.MOVING_LEFT = true;
                 this.ELEMENT.classList.remove("left");
                 this.ELEMENT.classList.add("right");
-                // console.log("rightAgro");
+                console.log("rightAgro");
+                this.enemiesStrikeDetection(hero);
             }
             if (this.X > hero.X - 400 && this.X < hero.X){
                 this.MOVING_LEFT = false;
                 this.MOVING_RIGHT = true;
                 this.ELEMENT.classList.remove("right");
                 this.ELEMENT.classList.add("left");
-                // console.log("leftAgro");
+                console.log("leftAgro");
+                this.enemiesStrikeDetection(hero);
             }
         }
     }

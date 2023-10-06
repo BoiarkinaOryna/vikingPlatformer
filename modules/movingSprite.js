@@ -97,8 +97,9 @@ class MovingSprite extends Sprite{
         if (this.HEALTH <= 0){
             this.ELEMENT.remove();
         };
+        // if ()
     };
-    strike(listEnemies){
+    heroesStrike(listEnemies){
         if (this.IDLE == true && this.JUMPING == false){
             this.ATTACKING = true;
             this.IDLE = false;
@@ -124,12 +125,11 @@ class MovingSprite extends Sprite{
                 this.HIT.ELEMENT.style.backgroundColor = "red";
                 this.HIT.ELEMENT.classList.add("hit");
 
-            }
-            else if (this.ELEMENT.classList.contains("left") == true){
+            }else if (this.ELEMENT.classList.contains("left") == true){
                 this.X -= 75;
                 this.HIT = new Hit(this.X, this.Y, 75, this.HEIGHT, undefined, "div");
                 this.ELEMENT.style.left = this.X;
-                this.HIT.ELEMENT.style.backgroundColor = "red";
+                // this.HIT.ELEMENT.style.backgroundColor = "red";
                 this.HIT.ELEMENT.classList.add("hit");
             };
             let [collisionRight, enemyRight] = this.HIT.collisionRight(listEnemies);
@@ -166,6 +166,84 @@ class MovingSprite extends Sprite{
                 };
     
                 this.IMG_PATH = `../images/character1.png`
+                this.ELEMENT.style.width = `${this.WIDTH}px`;
+                this.ELEMENT.src = this.IMG_PATH;
+                this.IDLE = true;
+                this.ATTACKING = false;
+            }, 100);
+        }
+    }
+    enemiesStrikeDetection(hero){
+        let col = false;
+        let chRect = this.getRect();
+        let hRect = hero.getRect()
+        console.log("enemy", chRect);
+        console.log("character", hRect);
+        if (chRect.bottom > hRect.top && chRect.top < hRect.bottom){
+            console.log(1);
+            if (chRect.left <= hRect.left && chRect.right >= hRect.left){
+                console.log(2);
+                col = true;
+            }
+        }else if (chRect.bottom > hRect.top && chRect.top < hRect.bottom){
+            console.log(1);
+            if (chRect.right >= hRect.right && chRect.left <= hRect.right){
+                console.log(2)
+                col = true;
+            }
+        }else if (chRect.right > hRect.left && chRect.left < hRect.right){
+            console.log(1);
+            if (chRect.bottom >= hRect.top && chRect.top < hRect.top){
+                console.log(2)
+                col = true;
+            }
+        }else if (chRect.right > hRect.left && chRect.left < hRect.right){
+            console.log(1);
+            if (chRect.top <= hRect.bottom && chRect.bottom > hRect.bottom){
+                console.log(2)
+                col = true;
+            }
+        }
+        if (col == true){
+                hero.HEALTH -= this.DMG;
+                hero.death();
+        }
+    }
+    enemiesStrike(){
+        if (this.IDLE == true && this.JUMPING == false){
+            this.ATTACKING = true;
+            this.IDLE = false;
+            this.WIDTH = 120;
+            this.ELEMENT.style.width = `${this.WIDTH}px`;
+
+            this.IMG_PATH = `../images/ElfStrike.png`;
+            this.ELEMENT.src = this.IMG_PATH;
+
+            if (this.ELEMENT.classList.contains("right") == true){
+                this.HIT = new Hit(this.X + 65, this.Y, 65, this.HEIGHT, undefined, "div");
+                console.log("img is changing");
+                this.HIT.ELEMENT.style.backgroundColor = "red";
+                this.HIT.ELEMENT.classList.add("hit");
+
+            }else if (this.ELEMENT.classList.contains("left") == true){
+                this.X -= 65;
+                this.HIT = new Hit(this.X, this.Y, 65, this.HEIGHT, undefined, "div");
+                console.log("img is changing");
+                this.ELEMENT.style.left = this.X;
+                this.HIT.ELEMENT.style.backgroundColor = "red";
+                this.HIT.ELEMENT.classList.add("hit");
+            };
+            
+            setTimeout(() => {
+                document.querySelector(".hit").remove(),         
+                this.WIDTH = 60;
+                if (this.ELEMENT.classList.contains("left") == true){
+                    this.X += 65;
+                    this.ELEMENT.style.left = this.X;
+                    
+                };
+    
+                this.IMG_PATH = `../images/ElfRun2.png`
                 this.ELEMENT.style.width = `${this.WIDTH}px`;
                 this.ELEMENT.src = this.IMG_PATH;
                 this.IDLE = true;
