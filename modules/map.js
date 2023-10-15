@@ -76,10 +76,10 @@ export function createMap(){
                         break;
 
                     case "h":
-                        hero = new Character(x, y - 21.2, 70, 120, "../images/character1.png", "img", 30, 3, "Георгій");
+                        hero = new Character(x, y - 21.2, 70, 120, "../images/character1.png", "img", 50, 3, "Георгій");
                         break;
                     case "e":
-                        enemy = new Enemy(x, y + 18.8, 60, 80, "../images/Elf.png", "img", 20, 8);
+                        enemy = new Enemy(x, y + 18.8, 60, 80, "../images/Elf.png", "img", 20, 1);
                         listEnemies.push(enemy);
                         break;
                     case "d":

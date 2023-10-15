@@ -122,7 +122,7 @@ class MovingSprite extends Sprite{
             // }
             if (this.ELEMENT.classList.contains("right") == true){
                 this.HIT = new Hit(this.X + 75, this.Y, 75, this.HEIGHT, undefined, "div");
-                this.HIT.ELEMENT.style.backgroundColor = "red";
+                // this.HIT.ELEMENT.style.backgroundColor = "red";
                 this.HIT.ELEMENT.classList.add("hit");
 
             }else if (this.ELEMENT.classList.contains("left") == true){
@@ -222,7 +222,7 @@ class MovingSprite extends Sprite{
             if (this.ELEMENT.classList.contains("right") == true){
                 this.HIT = new Hit(this.X + 65, this.Y, 65, this.HEIGHT, undefined, "div");
                 console.log("img is changing");
-                this.HIT.ELEMENT.style.backgroundColor = "red";
+                // this.HIT.ELEMENT.style.backgroundColor = "red";
                 this.HIT.ELEMENT.classList.add("hit");
 
             }else if (this.ELEMENT.classList.contains("left") == true){
@@ -230,7 +230,7 @@ class MovingSprite extends Sprite{
                 this.HIT = new Hit(this.X, this.Y, 65, this.HEIGHT, undefined, "div");
                 console.log("img is changing");
                 this.ELEMENT.style.left = this.X;
-                this.HIT.ELEMENT.style.backgroundColor = "red";
+                // this.HIT.ELEMENT.style.backgroundColor = "red";
                 this.HIT.ELEMENT.classList.add("hit");
             };
             

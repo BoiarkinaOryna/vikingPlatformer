@@ -66,5 +66,5 @@ document.addEventListener("keyup", (event) => {
 });
 document.addEventListener("click", (event) => {
     // hero.STATUS = "attacking";
-    hero.strike(listEnemies);
+    hero.heroesStrike(listEnemies);
 });
