@@ -59,16 +59,27 @@ class Enemy extends MovingSprite{
                 this.MOVING_LEFT = true;
                 this.ELEMENT.classList.remove("left");
                 this.ELEMENT.classList.add("right");
-                console.log("rightAgro");
-                this.enemiesStrikeDetection(hero);
+                // console.log("rightAgro");
+                let [colRight, colLeft] = [this.collisionRight([hero]), this.collisionLeft([hero])]
+                if (colRight == true || colLeft == true){
+                    if (hero.IMMUNE == false){
+                        hero.HEALTH -= 1; 
+                        document.querySelector("#hp").innerText = hero.HEALTH;
+                        hero.IMMUNE = true;
+                        setTimeout(() => {
+                            hero.IMMUNE = false;
+                        }, 500)
+                    }
+                      
+                }
             }
             if (this.X > hero.X - 400 && this.X < hero.X){
                 this.MOVING_LEFT = false;
                 this.MOVING_RIGHT = true;
                 this.ELEMENT.classList.remove("right");
                 this.ELEMENT.classList.add("left");
-                console.log("leftAgro");
-                this.enemiesStrikeDetection(hero);
+                // console.log("leftAgro");
+                // this.enemiesStrikeDetection(hero);
             }
         }
     }

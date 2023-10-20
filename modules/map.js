@@ -40,10 +40,10 @@ export function nextLevel(){
 
         };
         hero.ELEMENT.remove();
-        console.log(document.body.classList.contains("level0"));
+        // console.log(document.body.classList.contains("level0"));
         document.body.classList.remove(`level${currentLevel-1}`);
         document.body.classList.add(`level${currentLevel}`);
-        console.log(document.body.classList.contains("level0"));
+        // console.log(document.body.classList.contains("level0"));
         listElem = [];
         listEnemies = [];
         listNpc = [];
@@ -76,7 +76,7 @@ export function createMap(){
                         break;
 
                     case "h":
-                        hero = new Character(x, y - 21.2, 70, 120, "../images/character1.png", "img", 50, 3, "Георгій");
+                        hero = new Character(x, y - 21.2, 70, 120, "../images/character1.png", "img", 60, 3, "Георгій");
                         break;
                     case "e":
                         enemy = new Enemy(x, y + 18.8, 60, 80, "../images/Elf.png", "img", 20, 1);
@@ -95,7 +95,7 @@ export function createMap(){
                         teleport = new Sprite(x, y - 150, 99, 250, "../images/tree.png");
                         break;
                     case "s":
-                        shaman = new Npc(x, y - 30, 70, 130, "./images/ShamanNPC.png", "img", "Микола", shaman1);
+                        shaman = new Npc(x, y - 30, 70, 130, "./images/ShamanNPC.png", "img", "Шаман", shaman1);
                         listNpc.push(shaman);
                         shaman.ELEMENT.classList.add("npc");
 

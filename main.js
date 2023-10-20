@@ -1,46 +1,23 @@
 import { listElem, hero, listNpc, listEnemies, listTeleport, createMap, nextLevel } from "./modules/map.js";
-import { writeIntoLocalStorage, getFromLocalStorage } from "./modules/write_json.js";
 let keyPressed = {};
 
-const form = document.querySelector("form");
-const submitBtn = document.getElementById("submit");
-const submitLogin = document.getElementById("login-submit")
 
-writeIntoLocalStorage("user1", JSON.stringify(["password", "email"]));
-console.log(getFromLocalStorage("user1"));
-let registration = 0;
-let crMap = false;
-
-submitBtn.addEventListener("click", (event) => {
-    event.preventDefault();
-    writeIntoLocalStorage(form.name.value, form.password.value);
-    submitBtn.id = "login-submit";
-    document.querySelector("h1").innerText = "Login";
-    registration++;
-    if  (registration == 2){
-        // console.log("registration2 =", registration);
-        if (crMap == false){
-            // console.log("crMap =", crMap);
-            document.getElementById("wrapper").remove();
-            createMap();
-            gameLoop();
-        }
-    }
-    console.log("registration =", registration);
-});
+createMap();
 
 function gameLoop(){
-   
+    // console.log(hero);
     setTimeout(gameLoop, 16.6);
     hero.move(listElem, keyPressed);
     for (let enemy of listEnemies){
+        console.log("hero.X =", hero.X);
+        console.log("hero.Y =", hero.Y);
         enemy.enemyMove(listElem, hero);
     }
     nextLevel();
     hero.showDialog(listNpc);
        
 }
-// gameLoop();
+gameLoop();
 
 
 // document.body.classList.add("level1");
@@ -51,9 +28,12 @@ document.addEventListener("keydown", (event) => {
         hero.IMG_PATH = `../images/characterJump.png`;
         hero.ELEMENT.src = hero.IMG_PATH;
     }
-    for (let npc of listNpc){
-        
-        npc.dialog(keyPressed, hero, listNpc);
+    if (hero.X >= 813 && hero.X <= 963 && hero.Y == 77.6){
+        listNpc[0].dialog(keyPressed, hero);
+    }else if (hero.X >= 1213 && hero.X <= 1363 && hero.Y == 373.9999999999999){
+        listNpc[1].dialog(keyPressed, hero);
+    }else if (hero.X >= 1213 && hero.X <= 1263 && hero.Y == 373.9999999999999){
+        listNpc[0].dialog(keyPressed, hero);
     }
 });
 document.addEventListener("keyup", (event) => {
@@ -66,5 +46,10 @@ document.addEventListener("keyup", (event) => {
 });
 document.addEventListener("click", (event) => {
     // hero.STATUS = "attacking";
-    hero.heroesStrike(listEnemies);
+    hero.strike(listEnemies);
 });
+
+
+
+
+

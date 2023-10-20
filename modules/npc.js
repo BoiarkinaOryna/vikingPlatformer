@@ -7,14 +7,10 @@ class Npc extends Sprite{
         this.IMG_NUM = 1;
         this.CHAT;
         this.REPLIC_NUM = 0;
-
-        this.CHAT_LIST = document.getElementsByClassName("chat");
         this.DIALOG = dialog
 
     }
-    dialog(key, hero, listNpc){
-        let collRight = hero.collisionRight(listNpc);
-        let collLeft = hero.collisionLeft(listNpc);
+    dialog(key, hero){
         if (key["KeyF"] == true){
             console.log(this.PARAGRAPH);
             try{

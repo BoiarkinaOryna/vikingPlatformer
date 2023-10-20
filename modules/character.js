@@ -5,6 +5,7 @@ class Character extends MovingSprite{
         this.NAME = name;
         this.IMG_NUM = 1;
         this.ELEMENT.classList.add("right");
+        this.IMMUNE = false;
     };
 
     animation(){
@@ -106,16 +107,20 @@ class Character extends MovingSprite{
     
 
     showDialog(listNpc){
-        // нет
+        console.log("showDialog");
         if (this.collisionRight(listNpc) == true || this.collisionLeft(listNpc) == true){
             this.SHOW_DIALOG = true;
         } else{
             this.SHOW_DIALOG = false;
             try{
                 document.querySelector(".chat-text").remove();
-                let lengthArray = document.getElementsByClassName("chat").length
-                for (let chat; chat < lengthArray; chat++){
+                // let lengthArray = document.getElementsByClassName("chat").length
+                try{
+                    console.log("showDialog => false");
                     document.querySelector(".chat").remove()
+                }
+                catch{
+                    "pass";
                 }
                 
                 document.querySelector(".profile").remove()
